@@ -27,7 +27,7 @@ class File
     public static function getProjectDir()
     {
         if (null === self::$projectDir) {
-            $isTest = (($_ENV['BASE10_ENV'] ?: "") == "base10/util");
+            $isTest = (isset($_ENV['BASE10_ENV']) && $_ENV['BASE10_ENV'] == "base10/util");
 
             $r = new \ReflectionClass(self::class);
             $dir = $rootDir = \dirname($r->getFileName());
