@@ -27,9 +27,13 @@ class File
     public static function getProjectDir()
     {
         if (null === self::$projectDir) {
+            $isTest = (($_ENV['BASE10_ENV'] ?: "") == "base10/util");
+
             $r = new \ReflectionClass(self::class);
             $dir = $rootDir = \dirname($r->getFileName());
-            while (!file_exists($dir . '/composer.json')) {
+            while (!file_exists($dir . '/composer.json') ||
+                (!$isTest && file_exists($dir . '/.b10-util'))
+            ) {
                 if ($dir === \dirname($dir)) {
                     self::$projectDir = $rootDir;
                     return self::init(self::$projectDir);
@@ -62,6 +66,7 @@ class File
         $instance->path = $this->path;
         return $instance;
     }
+
     /**
      * @param \string[] $path
      * @return self | string

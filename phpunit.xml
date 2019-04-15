@@ -8,6 +8,8 @@
          bootstrap="vendor/autoload.php">
     <php>
         <ini name="error_reporting" value="-1"/>
+        <env name="BASE10_ENV" value="base10/util"/>
+
     </php>
 
     <testsuites>
