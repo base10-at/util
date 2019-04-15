@@ -45,6 +45,16 @@ class UrlTest extends TestCase
 
         self::assertEquals("$words[0]/$words[1]?$words[2]=$words[3]&$words[4]=$words[5]", $url->normalize());
     }
+    public function testUrlFunction()
+    {
+
+        $words = $this->faker()->words(6);
+
+        $url = \Base10\url($words[0], $words[1]);
+
+
+        self::assertEquals("$words[0]/$words[1]", $url->normalize());
+    }
 
     public function testUrlApi()
     {

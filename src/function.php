@@ -3,6 +3,6 @@
 if (!function_exists("url")) {
     function url(... $path)
     {
-        return Uri\Url::init($path);
+        return Uri\Url::init(...$path);
     }
 }
