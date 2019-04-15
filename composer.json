@@ -1,6 +1,6 @@
 {
   "name": "base10/util",
-  "version": "1.0.5",
+  "version": "1.0.1",
   "description": "URI helper to implify building URIs",
   "type": "library",
   "license": "MIT",
@@ -9,11 +9,11 @@
       "Base10\\Mixin\\": "src/Mixin",
       "Base10\\Test\\": "src/Test",
       "Base10\\Uri\\": "src/Uri"
-    }
+    },
+    "files": [
+      "src/function.php"
+    ]
   },
-  "files": [
-    "src/function.php"
-  ],
   "authors": [
     {
       "name": "mb",
