@@ -26,6 +26,8 @@ class UrlTest extends TestCase
 
     public function testUrlEncoding()
     {
+        $url = Url::init('a', 'b');
+  echo $url;
         $url = Url::init()
             ->push('üa', 'b')
             ->putParams(['x' => 3, "üy" => 4]);
