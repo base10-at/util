@@ -1,0 +1,29 @@
+{
+    "name": "base10/util",
+    "description": "URI helper to implify building URIs",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Base10\\Mixin\\": "src/Mixin",
+            "Base10\\Test\\": "src/Test",
+            "Base10\\Uri\\": "src/Uri"
+        }
+    },
+    "authors": [
+        {
+            "name": "mb",
+            "email": "mb@sysvyz.org"
+        },
+        {
+            "name": "lk",
+            "email": "lk@sysvyz.org"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {},
+    "require-dev": {
+        "fzaninotto/faker": "^1.8",
+        "phpunit/phpunit": "^8.1"
+    }
+}
