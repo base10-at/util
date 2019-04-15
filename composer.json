@@ -1,13 +1,15 @@
 {
-  "name": "base10/util",
-  "description": "URI helper to implify building URIs",
-  "type": "library",
-  "license": "MIT",
-  "autoload": {
-    "psr-4": {
-      "Base10\\Mixin\\": "src/Mixin",
-      "Base10\\Test\\": "src/Test",
-      "Base10\\Uri\\": "src/Uri"
+    "name": "base10/util",
+    "version": "1.0.2",
+    "description": "URI helper to implify building URIs",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Base10\\Mixin\\": "src/Mixin",
+            "Base10\\Test\\": "src/Test",
+            "Base10\\Uri\\": "src/Uri"
+        }
     },
     "files": [
       "src/function.php"

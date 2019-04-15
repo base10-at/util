@@ -40,6 +40,11 @@ class FileTest extends TestCase
         self::assertEquals('', $File->normalize());
     }
 
+    public function testGetProjectDir()
+    {
+        $this->assertEquals(File::getProjectDir()."", dirname(__DIR__));
+    }
+
     public function testFileImmutable()
     {
         $words = $this->faker()->words(6);
