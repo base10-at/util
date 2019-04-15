@@ -12,6 +12,7 @@ namespace AppTest\Util;
 use Base10\Test\Mixin\HasFaker;
 use Base10\Uri\Url;
 use PHPUnit\Framework\TestCase;
+use function \Base10\url;
 
 class UrlTest extends TestCase
 {
@@ -52,7 +53,7 @@ class UrlTest extends TestCase
 
         $words = $this->faker()->words(6);
 
-        $url = \Base10\url($words[0], $words[1]);
+        $url = url($words[0], $words[1]);
 
 
         self::assertEquals("$words[0]/$words[1]", $url->normalize());
