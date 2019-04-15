@@ -14,3 +14,4 @@ composer.phar
 *.iml
 out
 gen
+composer.lock
