@@ -1,6 +1,6 @@
 {
     "name": "base10/util",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "URI helper to implify building URIs",
     "type": "library",
     "license": "MIT",
