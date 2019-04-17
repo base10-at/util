@@ -29,15 +29,15 @@ class Random
 
     public static function ALL()
     {
-        return self::NUMBER |
-            self::HEX |
-            self::LOWER_CASE |
-            self::UPPER_CASE;
+        return CharSet::NUMBER |
+            CharSet::HEX |
+            CharSet::LOWER_CASE |
+            CharSet::UPPER_CASE;
     }
 
     public function generate($length, $flags = 15)
     {
-        return $this->buildKey($length, $this->getCharacterSet($this->validateFlags($flags)));
+        return $this->buildKey($length, CharSet::getSet($this->validateFlags($flags)));
     }
 
     public function charset($length, array $set)
@@ -45,28 +45,6 @@ class Random
         return $this->buildKey($length, $set);
     }
 
-    /**
-     * @param $flags
-     * @return array
-     */
-    private function getCharacterSet($flags): array
-    {
-        $charset = [];
-
-
-        if ($flags & self::HEX) {
-            $charset = array_merge($charset, range('a', 'f'), range(0, 9));
-        } elseif ($flags & self::NUMBER) {
-            $charset = array_merge($charset, range(0, 9));
-        }
-        if ($flags & self::LOWER_CASE) {
-            $charset = array_merge($charset, range('a', 'z'));
-        }
-        if ($flags & self::UPPER_CASE) {
-            $charset = array_merge($charset, range('A', 'Z'));
-        }
-        return $charset;
-    }
 
     /**
      * @param int $flags
@@ -74,7 +52,7 @@ class Random
      */
     private function validateFlags(int $flags): int
     {
-        if ($flags < 1 || !($flags & self::ALL())
+        if ($flags < 1 || !($flags & CharSet::ALL)
         ) {
             throw new \InvalidArgumentException($flags . " is invalid");
         }

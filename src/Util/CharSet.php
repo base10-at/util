@@ -11,24 +11,72 @@ namespace Base10\Util;
 
 class CharSet
 {
+
     CONST HEX = 1;
     CONST NUMBER = 2;
     CONST LOWER_CASE = 4;
     CONST UPPER_CASE = 8;
+    CONST SPECIAL = 16;
+    CONST BRACKETS = 32;
+
+    CONST LETTER =
+        self::LOWER_CASE |
+        self::UPPER_CASE;
+
+    CONST ALL =
+        self::HEX |
+        self::NUMBER |
+        self::LOWER_CASE |
+        self::UPPER_CASE |
+        self::SPECIAL |
+        self::BRACKETS;
 
 
-    /**
-     * @return array
-     */
-    private function lowerCase()
+    private function __construct()
     {
-        return range('a', 'z');
     }
 
     /**
      * @return array
      */
-    private function upperCase()
+    public static function lowerCase()
+    {
+        return range('a', 'z');
+    }
+
+    /**
+     * @param $flags
+     * @return array
+     */
+    public static function getSet($flags): array
+    {
+        $charset = [];
+
+
+        if ($flags & CharSet::HEX) {
+            $charset = array_merge($charset, self::hex());
+        } elseif ($flags & CharSet::NUMBER) {
+            $charset = array_merge($charset, self::digit());
+        }
+        if ($flags & CharSet::LOWER_CASE) {
+            $charset = array_merge($charset, self::lowerCase());
+        }
+        if ($flags & CharSet::UPPER_CASE) {
+            $charset = array_merge($charset, self::upperCase());
+        }
+        if ($flags & CharSet::SPECIAL) {
+            $charset = array_merge($charset, self::special());
+        }
+        if ($flags & CharSet::BRACKETS) {
+            $charset = array_merge($charset, self::brackets());
+        }
+        return array_unique($charset);
+    }
+
+    /**
+     * @return array
+     */
+    public static function upperCase()
     {
         return range('A', 'Z');
     }
@@ -36,7 +84,7 @@ class CharSet
     /**
      * @return array
      */
-    private function digit()
+    public static function digit()
     {
         return str_split(implode('', range('0', '9')));
     }
@@ -44,16 +92,32 @@ class CharSet
     /**
      * @return array
      */
-    private function hex()
+    public static function hex()
     {
-        return array_merge(range('a', 'f'), $this->digit());
+        return array_merge(range('a', 'f'), self::digit());
     }
 
     /**
      * @return array
      */
-    private function upperORLowerCase()
+    public static function letter()
     {
-        return array_merge($this->upperCase(), $this->lowerCase());
+        return array_merge(self::upperCase(), self::lowerCase());
+    }
+
+    /**
+     * @return array
+     */
+    public static function special()
+    {
+        return ['$', '/', '*', '#', '?', '.', '+', '-', '~', '%', '\\', '=', '<', '>'];
+    }
+
+    /**
+     * @return array
+     */
+    public static function brackets()
+    {
+        return ['(', ')', '[', ']', '{', '}'];
     }
 }
