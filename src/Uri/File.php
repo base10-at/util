@@ -58,6 +58,19 @@ class File
     }
 
     /**
+     * @param int $mode
+     * @return static
+     */
+    public function create($mode = 0777)
+    {
+        $path = $this . "";
+        if (!file_exists($path)) {
+            mkdir($path, $mode, true);
+        }
+        return $this;
+    }
+
+    /**
      * @return static
      */
     public function copy()
