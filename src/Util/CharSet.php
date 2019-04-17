@@ -70,7 +70,7 @@ class CharSet
         if ($flags & CharSet::BRACKETS) {
             $charset = array_merge($charset, self::brackets());
         }
-        return array_unique($charset);
+        return array_values(array_unique($charset));
     }
 
     /**
@@ -110,7 +110,11 @@ class CharSet
      */
     public static function special()
     {
-        return ['$', '/', '*', '#', '?', '.', '+', '-', '~', '%', '\\', '=', '<', '>'];
+        return [
+            '$', '#', '?', '.', '!',
+            '/', '*', '+', '-', '%',
+            '~', '&', '=', '<', '>'
+        ];
     }
 
     /**
