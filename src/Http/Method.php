@@ -1,6 +1,6 @@
 <?php namespace Base10\Http;
 
-final class HttpMethod
+final class Method
 {
     private function __construct()
     {
@@ -12,4 +12,5 @@ final class HttpMethod
     CONST PATCH = 'PATCH';
     CONST DELETE = 'DELETE';
     CONST OPTION = 'OPTION';
+    CONST HEAD = 'HEAD';
 }

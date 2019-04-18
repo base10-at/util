@@ -1,11 +1,12 @@
 {
   "name": "base10/util",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "description": "URI helper to simplify building URIs",
   "type": "library",
   "license": "MIT",
   "autoload": {
     "psr-4": {
+      "Base10\\Http\\": "src/Http",
       "Base10\\Mixin\\": "src/Mixin",
       "Base10\\Test\\": "src/Test",
       "Base10\\Util\\": "src/Util",
