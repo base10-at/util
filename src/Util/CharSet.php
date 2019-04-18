@@ -1,12 +1,4 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: mb
- * Date: 17.04.19
- * Time: 23:09
- */
-
-namespace Base10\Util;
+<?php namespace Base10\Util;
 
 
 class CharSet
