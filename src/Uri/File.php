@@ -120,6 +120,6 @@ class File
      */
     private function buildPath(): string
     {
-        return implode(DIRECTORY_SEPARATOR, $this->path);
+        return implode(DIRECTORY_SEPARATOR, array_values(array_filter($this->path)));
     }
 }
