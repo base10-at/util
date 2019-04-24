@@ -27,17 +27,9 @@ class Random
         $this->generateSeed();
     }
 
-    public static function ALL()
-    {
-        return CharSet::NUMBER |
-            CharSet::HEX |
-            CharSet::LOWER_CASE |
-            CharSet::UPPER_CASE;
-    }
-
     public function generate($length, $flags = 15)
     {
-        return $this->buildKey($length, CharSet::getSet($this->validateFlags($flags)));
+        return $this->buildKey($length, CharSet::getSet(CharSet::validateFlags($flags)));
     }
 
     public function charset($length, array $set)
@@ -45,19 +37,6 @@ class Random
         return $this->buildKey($length, $set);
     }
 
-
-    /**
-     * @param int $flags
-     * @return int
-     */
-    private function validateFlags(int $flags): int
-    {
-        if ($flags < 1 || !($flags & CharSet::ALL)
-        ) {
-            throw new \InvalidArgumentException($flags . " is invalid");
-        }
-        return $flags;
-    }
 
     private function generateSeed(): void
     {

@@ -2,6 +2,11 @@
 
 abstract class Method
 {
+
+    /**
+     * Method constructor.
+     * @codeCoverageIgnore
+     */
     private function __construct()
     {
     }

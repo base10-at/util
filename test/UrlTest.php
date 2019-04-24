@@ -47,6 +47,37 @@ class UrlTest extends TestCase
 
         self::assertEquals("$words[0]/$words[1]?$words[2]=$words[3]&$words[4]=$words[5]", $url->normalize());
     }
+
+    public function testUrlPutParam()
+    {
+
+        $words = $this->faker()->words(6);
+
+        $url = Url::init();
+        $url2 = $url->push($words[0], $words[1]);
+        $url3 = $url2->putParam($words[2], $words[3]);
+
+        $this->assertNotSame($url2, $url);
+        $this->assertNotSame($url3, $url2);
+        self::assertEquals("$words[0]/$words[1]?$words[2]=$words[3]", $url3->normalize());
+        self::assertEquals("$words[0]/$words[1]?$words[2]=$words[3]", $url3.'');
+    }
+
+    public function testUrlPut()
+    {
+
+        $words = $this->faker()->words(6);
+
+        $url = Url::init();
+        $url2 = $url->push($words[0], $words[1]);
+        $url3 = $url2->put($words[2], $words[3]);
+
+        $this->assertNotSame($url2, $url);
+        $this->assertNotSame($url3, $url2);
+        self::assertEquals("$words[0]/$words[1]?$words[2]=$words[3]", $url3->normalize());
+        self::assertEquals("$words[0]/$words[1]?$words[2]=$words[3]", "$url3");
+    }
+
     public function testUrlFunction()
     {
 

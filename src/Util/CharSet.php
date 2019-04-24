@@ -1,7 +1,9 @@
 <?php namespace Base10\Util;
 
 
-class CharSet
+use InvalidArgumentException;
+
+abstract class CharSet
 {
 
     CONST HEX = 1;
@@ -24,6 +26,10 @@ class CharSet
         self::BRACKETS;
 
 
+    /**
+     * CharSet constructor.
+     * @codeCoverageIgnore
+     */
     private function __construct()
     {
     }
@@ -115,5 +121,19 @@ class CharSet
     public static function brackets()
     {
         return ['(', ')', '[', ']', '{', '}'];
+    }
+
+    /**
+     * @param int $flags
+     * @return int
+     * @throws InvalidArgumentException
+     */
+    public static function validateFlags(int $flags)
+    {
+        if ($flags < 1 || !($flags & CharSet::ALL)
+        ) {
+            throw new InvalidArgumentException($flags . " is invalid");
+        }
+        return $flags;
     }
 }

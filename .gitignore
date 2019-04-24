@@ -4,5 +4,9 @@
 out
 gen
 *.phpunit.result.cache
+phpunit.xml
+phpunit.xml.*
+phpunit.*.xml
+!phpunit.xml.dist
 
 composer.lock

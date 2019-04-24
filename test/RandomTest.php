@@ -2,6 +2,7 @@
 
 use Base10\Util\CharSet;
 use Base10\Util\Random;
+use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 
 class RandomTest extends TestCase
@@ -35,14 +36,14 @@ class RandomTest extends TestCase
 
     public function testCharSetEmpty()
     {
-        $this->expectException(\InvalidArgumentException::class);
+        $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('charset is empty');
         $this->random->charset(self::LENGTH, []);
     }
 
     public function testCharSetEmptyString()
     {
-        $this->expectException(\InvalidArgumentException::class);
+        $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('charset is empty');
         $this->random->charset(self::LENGTH, ['']);
     }
@@ -69,6 +70,17 @@ class RandomTest extends TestCase
         $this->assertNotInSet($result, range("g", 'z'));
         $this->assertNotInSet($result, CharSet::special());
         $this->assertNotInSet($result, CharSet::brackets());
+    }
+
+    public function testInvalidFlag()
+    {
+        $this->expectException(InvalidArgumentException::class);
+        $this->random->generate(self::LENGTH, 0);
+    }
+    public function testInvalidFlag2()
+    {
+        $this->expectException(InvalidArgumentException::class);
+        $this->random->generate(self::LENGTH, CharSet::ALL+1);
     }
 
     public function testHexORNumeric()
@@ -166,7 +178,8 @@ class RandomTest extends TestCase
 
     /**
      * @param string $value
-     * @return array|bool|float|int|string
+     * @return iterable
+     * @throws \Exception
      */
     private function makeIterable(string $value)
     {
@@ -176,8 +189,10 @@ class RandomTest extends TestCase
             return $value;
         } elseif (is_scalar($value)) {
             return [$value];
+        } elseif (is_iterable($value)) {
+            /** @var iterable $value */
+            return $value;
         }
-        return $value;
+        throw new \Exception('dafuque');
     }
-
 }

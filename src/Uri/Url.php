@@ -26,26 +26,14 @@ class Url
     }
 
     /**
-     * @param array $param
-     * @return Url
-     */
-    public function putParams(array $param): Url
-    {
-        return $this->_putParams($param);
-    }
-
-    /**
      * @param array $params
      * @return Url
      */
-    public function setParams(array $params): Url
+    public function putParams(array $params): Url
     {
-
-        $instance = $this->copy();
-
-        $instance->params = $params;
-        return $instance;
+        return $this->copy()->_putParams($params);
     }
+
 
     /**
      * @param $key
@@ -102,10 +90,8 @@ class Url
      */
     public function _putParams(array $param): Url
     {
-
-        $instance = $this->copy();
-        $instance->params += $param;
-        return $instance;
+        $this->params += $param;
+        return $this;
     }
 
     /*

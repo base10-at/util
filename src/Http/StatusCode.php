@@ -3,6 +3,10 @@
 
 abstract class StatusCode
 {
+    /**
+     * StatusCode constructor.
+     * @codeCoverageIgnore
+     */
     private function __construct()
     {
     }

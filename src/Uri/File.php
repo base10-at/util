@@ -29,20 +29,28 @@ class File
         if (null === self::$projectDir) {
             $isTest = (isset($_ENV['BASE10_ENV']) && $_ENV['BASE10_ENV'] == "base10/util");
 
-            $r = new \ReflectionClass(self::class);
-            $dir = $rootDir = \dirname($r->getFileName());
+            $dir = __DIR__;
             while (!file_exists($dir . '/composer.json') ||
                 (!$isTest && file_exists($dir . '/.b10-util'))
             ) {
-                if ($dir === \dirname($dir)) {
-                    self::$projectDir = $rootDir;
-                    return self::init(self::$projectDir);
-                }
-                $dir = \dirname($dir);
+                $dir = dirname($dir);
             }
             self::$projectDir = $dir;
         }
-        return self::init(self::$projectDir);
+        return self::split(self::$projectDir);
+    }
+
+    public static function split(string $path)
+    {
+        $parts = explode(DIRECTORY_SEPARATOR, $path);
+
+        if ($parts[0] === '') {
+            if (count($parts) > 1) {
+                array_shift($parts);
+            }
+            $parts[0] = '/' . $parts[0];
+        }
+        return self::init(...$parts);
     }
 
     /**

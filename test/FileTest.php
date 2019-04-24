@@ -36,7 +36,7 @@ class FileTest extends TestCase
     public function testCreate()
     {
 
-        $file = File::getProjectDir()->push("src","somepath");
+        $file = File::getProjectDir()->push("src", "somepath");
         $path = $file . '';
         $this->assertFalse(file_exists($path));
         $file->create(0640);
@@ -55,6 +55,22 @@ class FileTest extends TestCase
     public function testGetProjectDir()
     {
         $this->assertEquals(File::getProjectDir() . "", dirname(__DIR__));
+    }
+
+    public function testGetPublicDir()
+    {
+        $this->assertEquals(
+            File::getPublicDir() . "",
+            dirname(__DIR__) . DIRECTORY_SEPARATOR . 'public'
+        );
+    }
+
+    public function testGetPublicDirWithPath()
+    {
+        $this->assertEquals(
+            File::getPublicDir('path') . "",
+            dirname(__DIR__) . DIRECTORY_SEPARATOR . 'public'. DIRECTORY_SEPARATOR . 'path'
+        );
     }
 
     public function testFileImmutable()

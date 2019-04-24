@@ -5,11 +5,25 @@
          xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/7.3/phpunit.xsd"
          backupGlobals="false"
          colors="true"
+         verbose="true"
          bootstrap="vendor/autoload.php">
     <php>
         <ini name="error_reporting" value="-1"/>
         <env name="BASE10_ENV" value="base10/util"/>
 
+        <env name="SENDER_EMAIL_SERVER" value="some.domain"/>
+        <env name="SENDER_EMAIL_ADDRESS" value="email@some.domain"/>
+        <env name="SENDER_EMAIL_PORT" value="25"/>
+        <env name="SENDER_EMAIL_USERNAME" value="username"/>
+        <env name="SENDER_EMAIL_PASSWORD" value="password"/>
+
+        <env name="RECEIVER_EMAIL_SERVER" value="some.domain"/>
+        <env name="RECEIVER_EMAIL_ADDRESS" value="email@some.domain"/>
+        <env name="RECEIVER_EMAIL_PORT" value="25"/>
+        <env name="RECEIVER_EMAIL_USERNAME" value="username"/>
+        <env name="RECEIVER_EMAIL_PASSWORD" value="password"/>
+
+        <request name="--repeat" value="3"/>
     </php>
 
     <testsuites>

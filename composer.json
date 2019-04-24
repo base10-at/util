@@ -1,16 +1,18 @@
 {
   "name": "base10/util",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "description": "URI helper to simplify building URIs",
   "type": "library",
   "license": "MIT",
   "autoload": {
     "psr-4": {
+      "Base10\\Contract\\": "src/Contract",
+      "Base10\\Email\\": "src/Email",
       "Base10\\Http\\": "src/Http",
       "Base10\\Mixin\\": "src/Mixin",
       "Base10\\Test\\": "src/Test",
-      "Base10\\Util\\": "src/Util",
-      "Base10\\Uri\\": "src/Uri"
+      "Base10\\Uri\\": "src/Uri",
+      "Base10\\Util\\": "src/Util"
     },
     "files": [
       "src/function.php"
@@ -28,10 +30,12 @@
   ],
   "minimum-stability": "stable",
   "require-dev": {
+    "ddeboer/imap": "^1.7",
     "fzaninotto/faker": "^1.8",
     "phpunit/phpunit": "^8.1"
   },
   "require": {
+    "swiftmailer/swiftmailer": "^6.1",
     "symfony/property-access": "^4.2"
   }
 }
