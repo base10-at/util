@@ -1,6 +1,6 @@
 <?php namespace Base10\Http;
 
-final class Method
+abstract class Method
 {
     private function __construct()
     {
